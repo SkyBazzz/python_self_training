@@ -3,7 +3,7 @@ from turtle import Turtle
 
 class Scoreboard(Turtle):
 
-    def __init__(self, win_condition) -> None:
+    def __init__(self, win_condition=5) -> None:
         super().__init__()
         self.color("white")
         self.penup()
