@@ -18,11 +18,7 @@ guessed_states = list()
 
 
 def show_missing_states():
-    global state
-    missing_states = list()
-    for state in all_states:
-        if state not in guessed_states:
-            missing_states.append(state)
+    missing_states = [state for state in all_states if state not in guessed_states]
     missing_data = pandas.DataFrame(missing_states)
     missing_data.to_csv("missing_states.csv")
 
