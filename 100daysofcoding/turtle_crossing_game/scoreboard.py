@@ -4,7 +4,6 @@ FONT = ("Courier", 24, "normal")
 
 
 class Scoreboard(Turtle):
-
     def __init__(self) -> None:
         super().__init__()
         self.level = 1
@@ -22,5 +21,5 @@ class Scoreboard(Turtle):
         self.write(f"Level: {self.level}", align="left", font=FONT)
 
     def game_over(self):
-        self.goto(0,0)
+        self.goto(0, 0)
         self.write(f"GAME OVER", align="center", font=FONT)

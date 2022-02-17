@@ -1,5 +1,4 @@
 class Stack:
-
     def __init__(self):
         self.items = []
 
@@ -55,11 +54,7 @@ class Stack:
 
 
 def match_symbols(symbols: str):
-    symbol_pairs = {
-        '(': ')',
-        '[': ']',
-        '{': '}'
-    }
+    symbol_pairs = {"(": ")", "[": "]", "{": "}"}
 
     openers = symbol_pairs.keys()
     my_stack = Stack()
@@ -95,7 +90,6 @@ print(match_symbols("{((}())){{{}}}"))
 
 
 class Queue:
-
     def __init__(self):
         self.items = []
 

@@ -9,26 +9,32 @@ MONEY = 550
 
 
 def print_info():
-    print("""
+    print(
+        """
 The coffee machine has:
 {} of water
 {} of milk
 {} of coffee beans
 {} of disposable cups
 {} of money
-""".format(WATER_COUNT, MILK_COUNT, COFFEE_BEANS_COUNT, CUPS, MONEY))
+""".format(
+            WATER_COUNT, MILK_COUNT, COFFEE_BEANS_COUNT, CUPS, MONEY
+        )
+    )
 
 
 def buy():
     while True:
-        coffee_type = input("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu: "
-                            "\n> ")
+        coffee_type = input(
+            "What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu: "
+            "\n> "
+        )
         global WATER_COUNT, MILK_COUNT, COFFEE_BEANS_COUNT, CUPS, MONEY
         if coffee_type == "1":
             if WATER_COUNT < 250:
                 print("Sorry, not enough water!")
                 break
-            if COFFEE_BEANS_COUNT< 16:
+            if COFFEE_BEANS_COUNT < 16:
                 print("Sorry, not enough coffee!")
                 break
             if CUPS < 1:
@@ -69,7 +75,7 @@ def buy():
             if MILK_COUNT < 100:
                 print("Sorry, not enough milk!")
                 break
-            if COFFEE_BEANS_COUNT< 12:
+            if COFFEE_BEANS_COUNT < 12:
                 print("Sorry, not enough coffee!")
                 break
             if CUPS < 1:
@@ -89,9 +95,13 @@ def buy():
 
 def take():
     global MONEY
-    print("""
+    print(
+        """
     I gave you ${}
-    """.format(MONEY))
+    """.format(
+            MONEY
+        )
+    )
     MONEY -= MONEY
 
 
@@ -101,9 +111,13 @@ def fill():
     WATER_COUNT += add_water
     add_milk = int(input("Write how many ml of milk do you want to add: \n> "))
     MILK_COUNT += add_milk
-    add_coffee_beans = int(input("Write how many grams of coffee beans do you want to add: \n> "))
+    add_coffee_beans = int(
+        input("Write how many grams of coffee beans do you want to add: \n> ")
+    )
     COFFEE_BEANS_COUNT += add_coffee_beans
-    add_cups = int(input("Write how many disposable cups of coffee do you want to add: \n> "))
+    add_cups = int(
+        input("Write how many disposable cups of coffee do you want to add: \n> ")
+    )
     CUPS += add_cups
 
 

@@ -6,7 +6,6 @@ Y_FINISH_LINE = 280
 
 
 class Player(Turtle):
-
     def __init__(self) -> None:
         super().__init__(shape="turtle")
         self.color("green")

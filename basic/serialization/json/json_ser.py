@@ -2,12 +2,7 @@ import json
 from datetime import datetime
 
 # Basic json serialization and deserialization
-event = {
-    'name': 'Homer Simpson',
-    'item': 'Duff',
-    'amout': 4,
-    'item price': 4.75
-}
+event = {"name": "Homer Simpson", "item": "Duff", "amout": 4, "item price": 4.75}
 
 
 def basic_serialization():
@@ -22,23 +17,23 @@ def basic_deserialization():
 
 
 def basic_serialization_to_file():
-    with open('event.json', 'w') as out:
+    with open("event.json", "w") as out:
         json.dump(event, out, indent=4)
 
 
 def basic_deserialization_from_file():
-    with open('event.json', 'r') as fp:
+    with open("event.json", "r") as fp:
         event_str = json.load(fp)
     print(event_str)
 
 
 # Custom types serialization and deserialization. Json doesn't have datetime object
 custom_event = {
-    'time': datetime(2021, 8, 13, 12, 26, 0),
-    'name': 'Homer Simpson',
-    'item': 'Duff',
-    'amout': 4,
-    'item price': 4.75
+    "time": datetime(2021, 8, 13, 12, 26, 0),
+    "name": "Homer Simpson",
+    "item": "Duff",
+    "amout": 4,
+    "item price": 4.75,
 }
 
 
@@ -78,17 +73,17 @@ print(des_data)
 from io import BytesIO
 
 groups = [
-    {'animal': 'bee', 'group': 'swarm'},
-    {'animal': 'fox', 'group': 'charm'},
-    {'animal': 'whale', 'group': 'pod'}
+    {"animal": "bee", "group": "swarm"},
+    {"animal": "fox", "group": "charm"},
+    {"animal": "whale", "group": "pod"},
 ]
 
 # Sending side
 network = BytesIO()
 for message in groups:
     data = json.dumps(message)
-    network.write(data.encode('UTF-8'))  # Sockets work in byte level
-    network.write(b'\n')
+    network.write(data.encode("UTF-8"))  # Sockets work in byte level
+    network.write(b"\n")
 
 # Receiving side
 network.seek(0)  # Go back to start of data for reading side
@@ -99,4 +94,4 @@ while True:
         break
 
     message = json.loads(line)
-    print('got', message)
+    print("got", message)

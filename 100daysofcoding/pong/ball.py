@@ -4,7 +4,6 @@ DEFAULT_SPEED = 0.1
 
 
 class Ball(Turtle):
-
     def __init__(self) -> None:
         super().__init__(shape="circle")
         self.x_move = 10

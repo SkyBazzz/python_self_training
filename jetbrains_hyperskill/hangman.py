@@ -3,7 +3,6 @@ import random
 
 
 class Test:
-
     def __init__(self):
         self.test = 0
 
@@ -25,6 +24,3 @@ class Game:
 
 game = Game()
 game.guess_word()
-
-
-

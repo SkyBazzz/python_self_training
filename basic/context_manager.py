@@ -2,7 +2,6 @@ from contextlib import contextmanager
 
 
 class File:
-
     def __init__(self, filename: str, method: str):
         self.file = open(filename, method)
 
@@ -23,7 +22,7 @@ with File("resources/context_manager.txt", "w") as f:
 
 @contextmanager
 def open_file(filename: str, method: str):
-    print('enter')
+    print("enter")
     file = open(filename, method)
     yield file
     file.close()

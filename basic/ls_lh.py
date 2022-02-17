@@ -15,8 +15,10 @@ def ls_lh(path):
     for file in listdir:
         domain, name = file_owner(file)
         stat = os.stat(file)
-        table.add_row([oct(stat.st_mode), stat.st_size, f'{domain}/{name}', stat.st_gid, file])
-    table.align["Size"] = 'r'
+        table.add_row(
+            [oct(stat.st_mode), stat.st_size, f"{domain}/{name}", stat.st_gid, file]
+        )
+    table.align["Size"] = "r"
     print(table.get_string(title="File Info", sortby="Size", reversesort=True))
 
 
@@ -35,7 +37,7 @@ def parse_cmd_args():
         import pip
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('path', help=path_help)
+    parser.add_argument("path", help=path_help)
 
     if len(sys.argv) < 1:
         parser.print_help(sys.stderr)
@@ -44,6 +46,6 @@ def parse_cmd_args():
     return cmd.path
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     file_path = parse_cmd_args()
     ls_lh(file_path)

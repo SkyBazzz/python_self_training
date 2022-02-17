@@ -8,7 +8,6 @@ MOVE_INCREMENT = 10
 
 
 class CarManager:
-
     def __init__(self) -> None:
         self.all_cars: List[Turtle] = list()
         self.car_speed = STARTING_MOVE_DISTANCE

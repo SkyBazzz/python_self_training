@@ -11,17 +11,18 @@ from selenium.webdriver.support.ui import Select
 
 
 class every_downloads_chrome:
-
     def __call__(self, driver):
         if not driver.current_url.startswith("chrome://downloads"):
             driver.get("chrome://downloads/")
-        return driver.execute_script("""
+        return driver.execute_script(
+            """
                var items = document.querySelector('downloads-manager')
                    .shadowRoot.getElementById('downloadsList').items;
                if (items.every(e => e.state === "COMPLETE"))
                    return True;
                return false;
-               """)
+               """
+        )
 
 
 driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())

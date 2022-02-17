@@ -3,7 +3,6 @@ from typing import Tuple, Sequence
 
 
 class Paddle(Turtle):
-
     def __init__(self, position: Tuple[int, int]) -> None:
         super().__init__(shape="square")
         self.color("white")

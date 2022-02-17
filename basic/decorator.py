@@ -15,7 +15,7 @@ def decoratorFunctionWithArguments(arg1, arg2, arg3):
 
 @decoratorFunctionWithArguments("hello", "world", 42)
 def sayHello(a1, a2, a3, a4):
-    print('sayHello arguments:', a1, a2, a3, a4)
+    print("sayHello arguments:", a1, a2, a3, a4)
 
 
 print("After decoration")

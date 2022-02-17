@@ -1,6 +1,6 @@
-import  weather_pb2 as pb
+import weather_pb2 as pb
 
-message = pb.Temperature(station='s42', value=17.2)
+message = pb.Temperature(station="s42", value=17.2)
 
 message.time.GetCurrentTime()
 print(message)

@@ -6,7 +6,6 @@ ALIGN = "center"
 
 
 class Scoreboard(Turtle):
-
     def __init__(self) -> None:
         super().__init__()
         self.score = 0
@@ -20,7 +19,11 @@ class Scoreboard(Turtle):
 
     def update_scoreboard(self):
         self.clear()
-        self.write(arg=f"Score: {self.score} High Score: {self.high_score}", align=ALIGN, font=FONT)
+        self.write(
+            arg=f"Score: {self.score} High Score: {self.high_score}",
+            align=ALIGN,
+            font=FONT,
+        )
 
     def increase_score(self):
         self.score += 1

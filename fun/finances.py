@@ -26,7 +26,7 @@ finale = simple_interest(base_line, years, interest)
 
 from PIL import Image, ImageDraw
 
-img = Image.open('blank.png')
+img = Image.open("blank.png")
 draw_img = ImageDraw.Draw(img)
 
 x = 0
