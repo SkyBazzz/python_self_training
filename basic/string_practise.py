@@ -1,7 +1,17 @@
 # Case fold
 from datetime import datetime
+import functools
 
 
+def log_function(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        print(func.__name__.upper().center(20, '='))
+        return func(*args, **kwargs)
+    return wrapper
+
+
+@log_function
 def compare_greek():
     upper = "Σ"
     lower = "σ"
@@ -10,14 +20,14 @@ def compare_greek():
     print(upper == lower)
     print(upper == final_pos)
     print(final_pos == lower)
-    print("===============")
+
     upper_cf = upper.casefold()
     lower_cf = lower.casefold()
     final_pos_cf = final_pos.casefold()
     print(upper_cf)
     print(lower_cf)
     print(final_pos_cf)
-    print("===============")
+
     print(upper_cf == lower)
     print(upper_cf == final_pos_cf)
     print(final_pos_cf == lower)
@@ -25,7 +35,7 @@ def compare_greek():
 
 # f string
 
-
+@log_function
 def equals_debugging():
     str_value = "other 🐶"
     num_value = 123
@@ -34,6 +44,7 @@ def equals_debugging():
     print(f"{num_value % 2 = }")
 
 
+@log_function
 def conversions():
     str_value = "other 🐶"
     print(f"{str_value!a}")
@@ -47,6 +58,7 @@ class MyClass:
         return "MyClass()"
 
 
+@log_function
 def formatting():
     num_value = 123.456
     now = datetime.utcnow()
