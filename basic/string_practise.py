@@ -52,6 +52,11 @@ def conversions():
     print(f"{repr(str_value)}")
 
 
+@log_function
+def split_max_split(string: str, max_split: int = 2):
+    return string.split(maxsplit=max_split)
+
+
 class MyClass:
     def __format__(self, format_spec: str) -> str:
         print(f"MyClass __format_ called with {format_spec=!r}")
@@ -68,6 +73,7 @@ def formatting():
 
     nested_format = ".2f"
     print(f"{num_value:{nested_format}}")
+    print(split_max_split("hello my name is Afdas", 6))
 
 
 equals_debugging()
