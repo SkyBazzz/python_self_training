@@ -9,7 +9,7 @@ def read_page() -> str:
 
 
 def find_links(html_text) -> ResultSet:
-    bs = BeautifulSoup(html_text, features='html.parser')
+    bs = BeautifulSoup(html_text, features="html.parser")
     return bs.find_all(name="a", attrs={"class", "list-thumbs__title"})
 
 

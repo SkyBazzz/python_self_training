@@ -4,12 +4,11 @@ from data import question_data
 from question_model import Question
 from quiz_brain import QuizBrain
 
-question_bank: List[Question] = list()
+question_bank: List[Question] = []
 
-# TODO: replace with https://opentdb.com/
 for question in question_data:
-    text = question["text"]
-    answer = question["answer"]
+    text = question["question"]
+    answer = question["correct_answer"]
     question_bank.append(Question(text, answer))
 
 quiz = QuizBrain(question_bank)

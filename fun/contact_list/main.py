@@ -6,9 +6,7 @@ from fun.contact_list.models import Contact, UnknownContact
 def add_contact_info():
     contact = form_contact_to_add()
 
-    contact_to_add = {
-        contact.full_name(): json.dumps(contact)
-    }
+    contact_to_add = {contact.full_name(): json.dumps(contact)}
     update_contacts_list(contact_to_add)
 
 
