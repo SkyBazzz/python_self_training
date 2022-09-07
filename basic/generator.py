@@ -2,12 +2,14 @@ import sys
 
 
 def generator(last_value):
+    # yield from range(last_value)
     for number in range(last_value):
         yield number
 
 
-gen = generator(1000000)
-lst = [i for i in range(1000000)]
+right_board = 1000000
+gen = generator(right_board)
+lst = list(range(right_board))
 print(type(gen))
 print(f"{gen}")
 

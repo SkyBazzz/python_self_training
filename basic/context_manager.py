@@ -23,9 +23,8 @@ with File("resources/context_manager.txt", "w") as f:
 @contextmanager
 def open_file(filename: str, method: str):
     print("enter")
-    file = open(filename, method)
-    yield file
-    file.close()
+    with open(filename, method) as file:
+        yield file
     print("exit")
 
 

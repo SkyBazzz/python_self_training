@@ -1,3 +1,8 @@
+"""
+https://pixe.la/v1/users/oleksandrsky/graphs/run1.html
+https://pixe.la/@oleksandrsky
+"""
+
 import requests
 import datetime
 BASE_URL = "https://pixe.la/v1/"
