@@ -1,15 +1,10 @@
 # Case fold
 from datetime import datetime
-import functools
+import pickle
+import sys
+import re
 
-
-def log_function(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        print(func.__name__.upper().center(20, "="))
-        return func(*args, **kwargs)
-
-    return wrapper
+from basic import log_function
 
 
 @log_function
@@ -61,7 +56,7 @@ def split_max_split(string: str, max_split: int = 2):
 
 class MyClass:
     def __format__(self, format_spec: str) -> str:
-        print(f"MyClass __format_ called with {format_spec=!r}")
+        print(f"MyClass __format__ called with {format_spec=!r}")
         return "MyClass()"
 
 
@@ -78,6 +73,48 @@ def formatting():
     print(split_max_split("hello my name is Afdas", 6))
 
 
-equals_debugging()
-conversions()
-formatting()
+@log_function
+def bytes_practise():
+    byte_string = b'spam'
+    string_string = 'eggs'
+    print((byte_string[0], string_string[0]))
+    print((byte_string[1:], string_string[1:]))
+    print(list(byte_string), list(string_string))
+    print(string_string.encode())
+    print(bytes(string_string, encoding="ascii"))
+    print(byte_string.decode())
+    print(str(byte_string, encoding="utf-16"))
+    print(str(byte_string, encoding="ascii"))
+    print(sys.platform)
+    print(sys.getdefaultencoding())
+    print(len(str(byte_string)))
+    print(len(str(byte_string, encoding="utf-8")))
+
+    byte_string = 'AÄBèC'
+    print(byte_string.encode("cp500"), "IBM EBCDIC")
+    print(byte_string.encode("latin-1"))
+    print(byte_string.encode("utf-8"))
+    print(byte_string.encode("cp850"))
+    byte_string = 'spam'  # ASCII text
+    print("ASCII text the same in most but not EBCDIC encoding")
+    print(byte_string.encode("cp500"), "in IBM EBCDIC")
+    print(byte_string.encode("latin-1"), "in latin-1")
+    print(byte_string.encode("utf-8"), "in utf-8")
+    print(byte_string.encode("cp850"), "in cp850")
+
+
+@log_function
+def re_string_practise():
+    str_text = "Bugger all down here on earth!"
+    byte_text = b"Bugger all down here on earth!"
+    print(re.match("(.*) down (.*) on (.*)", str_text).groups())
+    print(re.match(b"(.*) down (.*) on (.*)", byte_text).groups())
+    print(pickle.dumps([1, 2, 3], protocol=0))
+    pickle.dump([1, 2, 3], open('re_pickle', 'wb'), protocol=0)
+    print(pickle.load(open('re_pickle',  "rb"), encoding="ascii"))
+
+# equals_debugging()
+# conversions()
+# formatting()
+bytes_practise()
+re_string_practise()
