@@ -1,6 +1,6 @@
 class Indexer:
     def __getitem__(self, item):
-        return item ** 2
+        return item**2
 
 
 x = Indexer()
@@ -25,7 +25,7 @@ class Indexer:
     l = [1, 2, 3, 4, 5, 6]
 
     def __getitem__(self, item):
-        print('getitem:', item)
+        print("getitem:", item)
         return self.l[item]
 
     def __setitem__(self, key, value):
@@ -81,16 +81,16 @@ class Iters:
         self.data = value
 
     def __getitem__(self, item):
-        print(f'get[{item}]:', end='')
+        print(f"get[{item}]:", end="")
         return self.data[item]
 
     def __iter__(self):
-        print('iter=> ', end='')
+        print("iter=> ", end="")
         self.ix = 0
         return self
 
     def __next__(self):
-        print('next:', end='')
+        print("next:", end="")
         if self.ix == len(self.data):
             raise StopIteration
         item = self.data[self.ix]
@@ -98,22 +98,23 @@ class Iters:
         return item
 
     def __contains__(self, item):
-        print('contains: ', end='')
+        print("contains: ", end="")
         return item in self.data
 
 
+print("=" * 60)
 X = Iters([1, 2, 3, 4, 5])
 print(3 in X)
 for i in X:
-    print(i, end=' | ')
+    print(i, end=" | ")
 print()
-print([i ** 2 for i in X])
+print([i**2 for i in X])
 print(list(map(bin, X)))
 
 I = iter(X)
 while True:
     try:
-        print(next(I), end=' @ ')
+        print(next(I), end=" @ ")
     except StopIteration:
         break
 print()
@@ -150,7 +151,7 @@ class Powers:
         self._cube = cube
 
     def get_square(self):
-        return self._square ** 2
+        return self._square**2
 
     def set_square(self, value):
         self._square = value
@@ -158,7 +159,7 @@ class Powers:
     square = property(get_square, set_square)
 
     def get_cube(self):
-        return self._cube ** 3
+        return self._cube**3
 
     cube = property(get_cube)
 
@@ -174,7 +175,7 @@ print("Same, but with descriptors")
 
 class DescSquare:
     def __get__(self, instance, owner):
-        return instance._square ** 2
+        return instance._square**2
 
     def __set__(self, instance, value):
         instance._square = value
@@ -182,7 +183,7 @@ class DescSquare:
 
 class DescCube:
     def __get__(self, instance, owner):
-        return instance._cube ** 3
+        return instance._cube**3
 
 
 class Powers:
@@ -209,16 +210,16 @@ class Powers:
         self._cube = cube
 
     def __getattr__(self, name):
-        if name == 'square':
-            return self._square ** 2
-        elif name == 'cube':
-            return self._cube ** 3
+        if name == "square":
+            return self._square**2
+        elif name == "cube":
+            return self._cube**3
         else:
-            raise TypeError(f'unknown attr:{name}')
+            raise TypeError(f"unknown attr:{name}")
 
     def __setattr__(self, name, value):
-        if name == 'square':
-            self.__dict__['_square'] = value
+        if name == "square":
+            self.__dict__["_square"] = value
         else:
             self.__dict__[name] = value
 
@@ -238,16 +239,16 @@ class Powers:
         self._cube = cube
 
     def __getattribute__(self, name):
-        if name == 'square':
-            return object.__getattribute__(self, '_square') ** 2
-        elif name == 'cube':
-            return object.__getattribute__(self, '_cube') ** 3
+        if name == "square":
+            return object.__getattribute__(self, "_square") ** 2
+        elif name == "cube":
+            return object.__getattribute__(self, "_cube") ** 3
         else:
             return object.__getattribute__(self, name)
 
     def __setattr__(self, name, value):
-        if name == 'square':
-            self.__dict__['_square'] = value
+        if name == "square":
+            self.__dict__["_square"] = value
         else:
             self.__dict__[name] = value
 

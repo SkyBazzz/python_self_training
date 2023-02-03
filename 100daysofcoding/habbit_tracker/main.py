@@ -5,6 +5,7 @@ https://pixe.la/@oleksandrsky
 
 import requests
 import datetime
+
 BASE_URL = "https://pixe.la/v1/"
 API_TOKEN = "scnsiiI@&HNNSKANX@*(!XNLL"
 USER_NAME = "oleksandrsky"
@@ -29,10 +30,11 @@ pixel_params = {
     "optionalData": "{ 'How do you feel': 'fine'}",
 }
 
-headers = {
-    "X-USER-TOKEN": API_TOKEN
-}
+headers = {"X-USER-TOKEN": API_TOKEN}
 
-response = requests.post(url=f"{BASE_URL}{users}/{USER_NAME}/{graphs}/{RUN_GRAPH_ID}", json=pixel_params,
-                         headers=headers)
+response = requests.post(
+    url=f"{BASE_URL}{users}/{USER_NAME}/{graphs}/{RUN_GRAPH_ID}",
+    json=pixel_params,
+    headers=headers,
+)
 print(response.text)

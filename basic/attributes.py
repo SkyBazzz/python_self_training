@@ -3,15 +3,15 @@ class Person:
         self._name = name
 
     def get_name(self):
-        print('fetch...', end="")
+        print("fetch...", end="")
         return self._name
 
     def set_name(self, value):
-        print('change...', end="")
+        print("change...", end="")
         self._name = value
 
     def del_name(self):
-        print('remove...', end="")
+        print("remove...", end="")
         del self._name
 
     name = property(get_name, set_name, del_name, "name property docs")
@@ -25,7 +25,7 @@ print(bot.name)
 del bot.name
 
 print(f"\n{'-' * 20}")
-sue = Person('Sue Jones')
+sue = Person("Sue Jones")
 print(sue.name)
 print(Person.name.__doc__)
 
@@ -35,7 +35,7 @@ class PropSquare:
         self.value = start
 
     def get_x(self):
-        return self.value ** 2
+        return self.value**2
 
     def set_x(self, value):
         self.value = value
@@ -59,19 +59,19 @@ class PersonDecorator:
     @property
     def name(self):
         """name getter docs"""
-        print('fetch...', end="")
+        print("fetch...", end="")
         return self._name
 
     @name.setter
     def name(self, value):
         """name setter docs"""
-        print('change...', end="")
+        print("change...", end="")
         self._name = value
 
     @name.deleter
     def name(self):
         """name del docs"""
-        print('remove...', end="")
+        print("remove...", end="")
         del self._name
 
 
@@ -83,7 +83,7 @@ print(bom.name)
 del bom.name
 
 print(f"\n{'-' * 20}")
-sau = PersonDecorator('Sum Jones')
+sau = PersonDecorator("Sum Jones")
 print(sau.name)
 print(PersonDecorator.name.__doc__)
 print(PersonDecorator.name.getter.__doc__)
@@ -123,12 +123,12 @@ class CardHolder:
     age = property(get_age, set_age)
 
     def get_acct(self):
-        return f'{self.__acct[:-3]}***'
+        return f"{self.__acct[:-3]}***"
 
     def set_acct(self, value):
-        value = value.replace('-', '')
+        value = value.replace("-", "")
         if len(value) != self.acct_len:
-            raise TypeError('invalid acct number')
+            raise TypeError("invalid acct number")
         else:
             self.__acct = value
 
@@ -140,26 +140,26 @@ class CardHolder:
     remain = property(remain_get)
 
 
-bob = CardHolder('1234-5678', 'Bob Smith', 40, '123 main st')
-print(bob.acct, bob.name, bob.age, bob.remain, bob.address, sep=' / ')
-bob.name = 'Bob Q. Smith'
+bob = CardHolder("1234-5678", "Bob Smith", 40, "123 main st")
+print(bob.acct, bob.name, bob.age, bob.remain, bob.address, sep=" / ")
+bob.name = "Bob Q. Smith"
 bob.age = 50
-bob.acct = '23-45-67-89'
-print(bob.acct, bob.name, bob.age, bob.remain, bob.address, sep=' / ')
-sue = CardHolder('5678-12-34', 'Sue Jones', 35, '124 main st')
-print(sue.acct, sue.name, sue.age, sue.remain, sue.address, sep=' / ')
+bob.acct = "23-45-67-89"
+print(bob.acct, bob.name, bob.age, bob.remain, bob.address, sep=" / ")
+sue = CardHolder("5678-12-34", "Sue Jones", 35, "124 main st")
+print(sue.acct, sue.name, sue.age, sue.remain, sue.address, sep=" / ")
 try:
     sue.age = 200
 except:
-    print('Bad age for Sue')
+    print("Bad age for Sue")
 try:
     sue.remain = 5
 except:
     print("Can't set sue.remain")
 try:
-    sue.acct = '1234567'
+    sue.acct = "1234567"
 except:
-    print('Bad acct for Sue')
+    print("Bad acct for Sue")
 
 print("Here must be example with Descriptors, but it's missing")
 print("Validation with __getattr__")
@@ -176,48 +176,48 @@ class CardHolder:
         self.address = addr
 
     def __getattr__(self, name):
-        if name == 'acct':
+        if name == "acct":
             return f"{self._acct[:-3]}***"
-        elif name == 'remain':
+        elif name == "remain":
             return self.retireage - self.age
         else:
             raise AttributeError(name)
 
     def __setattr__(self, name, value):
-        if name == 'name':
-            value = value.lower().replace(' ', '_')
-        elif name == 'age':
+        if name == "name":
+            value = value.lower().replace(" ", "_")
+        elif name == "age":
             if value < 0 or value > 150:
-                raise ValueError('invalid age')
-        elif name == 'acct':
-            name = '_acct'
-            value = value.replace('-', '')
+                raise ValueError("invalid age")
+        elif name == "acct":
+            name = "_acct"
+            value = value.replace("-", "")
             if len(value) != self.acctlen:
-                raise TypeError('invalid acct number')
-        elif name == 'remain':
-            raise TypeError('cannot set remain')
+                raise TypeError("invalid acct number")
+        elif name == "remain":
+            raise TypeError("cannot set remain")
         self.__dict__[name] = value
 
 
-bob = CardHolder('1234-5678', 'Bob Smith', 40, '123 main st')
-print(bob.acct, bob.name, bob.age, bob.remain, bob.address, sep=' / ')
-bob.name = 'Bob Q. Smith'
+bob = CardHolder("1234-5678", "Bob Smith", 40, "123 main st")
+print(bob.acct, bob.name, bob.age, bob.remain, bob.address, sep=" / ")
+bob.name = "Bob Q. Smith"
 bob.age = 50
-bob.acct = '23-45-67-89'
-print(bob.acct, bob.name, bob.age, bob.remain, bob.address, sep=' / ')
-sue = CardHolder('5678-12-34', 'Sue Jones', 35, '124 main st')
-print(sue.acct, sue.name, sue.age, sue.remain, sue.address, sep=' / ')
+bob.acct = "23-45-67-89"
+print(bob.acct, bob.name, bob.age, bob.remain, bob.address, sep=" / ")
+sue = CardHolder("5678-12-34", "Sue Jones", 35, "124 main st")
+print(sue.acct, sue.name, sue.age, sue.remain, sue.address, sep=" / ")
 try:
     sue.age = 200
 except:
-    print('Bad age for Sue')
+    print("Bad age for Sue")
 try:
     sue.remain = 5
 except:
     print("Can't set sue.remain")
 try:
-    sue.acct = '1234567'
+    sue.acct = "1234567"
 except:
-    print('Bad acct for Sue')
+    print("Bad acct for Sue")
 print(sue.acct)
 print(sue._acct)

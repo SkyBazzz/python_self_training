@@ -1,9 +1,12 @@
 # Python program to explain the
 # use of wait() method in Event() class
+from collections import namedtuple, defaultdict
 import enum
 from enum import Enum
 from itertools import permutations
 import os
+import random
+from typing import Tuple, List
 
 I = 1111
 
@@ -16,7 +19,9 @@ def helper_function(event_obj, timeout, i):
     if flag:
         print("Event was set to true() earlier, moving ahead with the thread")
     else:
-        print("Time out occured, event internal flag still false. Executing thread without waiting for event")
+        print(
+            "Time out occured, event internal flag still false. Executing thread without waiting for event"
+        )
         print("Value to be printed=", i)
 
 
@@ -26,7 +31,7 @@ class Numbers(Enum):
     THIRD = enum.auto()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # # Initialising an event object
     # event_obj = threading.Event()
     #
@@ -66,7 +71,6 @@ if __name__ == '__main__':
 
     ...
 
-
 # def some_func(*, d):
 #     print(d)
 #
@@ -91,8 +95,12 @@ if __name__ == '__main__':
 # blocks = []
 # for block in iter(input, ''):
 #     blocks.append(block)
-#
+
 # print(blocks)
+# object creation
+# new = type("New", (object,), dict(a="sobaka", b="cat"))
+# type(new)
+# Named tuple
 # graduation_date = namedtuple("GraduationDate", ("year", "month"))
 #
 # def graduation():
@@ -100,31 +108,98 @@ if __name__ == '__main__':
 #
 # print(graduation())
 
-def tracer(f):
-    def wrapper(*args):
-        wrapper.count += 1
-        print(f'call {wrapper.count} to {f.__name__}')
-        return f(*args)
+# Function with attributes
+# def tracer(f):
+#     def wrapper(*args):
+#         wrapper.count += 1
+#         print(f"call {wrapper.count} to {f.__name__}")
+#         return f(*args)
+#
+#     wrapper.count = 0
+#
+#     return wrapper
+#
+#
+# @tracer
+# def printer(a, b):
+#     print(f"{a!s} {b!r}")
+#
+#
+# printer(1, 2)
+# printer(4, 3)
 
-    wrapper.count = 0
 
-    return wrapper
+#
+# max_workers = min(32, (os.cpu_count() or 1) + 4)
+# print(os.cpu_count())
+# print(max_workers)
+# [print(perm) for perm in permutations(["Sobaka", "Sobaka2", "Sobaka3", "Sobaka4"], 3)]
+
+# print(f"Comparison files:downloaded file from FCnF({new.a}) and " f"uploaded one")
 
 
-@tracer
-def printer(a, b):
-    print(f"{a!s} {b!r}")
+fruits = ["apple", "orange", "watermelon"]
 
 
-printer(1, 2)
-printer(4, 3)
+class Box:
+    def __init__(self, components: List[str]) -> None:
+        self.components = components
 
-new = type("New", (object,), dict(a="sobaka", b="cat"))
-type(new)
+    def __enter__(self):
+        for component in self.components:
+            print(f"I am taking {component}")
 
-max_workers = min(32, (os.cpu_count() or 1) + 4)
-print(os.cpu_count())
-print(max_workers)
-[print(perm) for perm in permutations(["Sobaka", "Sobaka2", "Sobaka3", "Sobaka4"], 3)]
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        for component in self.components:
+            print(f"Putting {component} back")
 
-print(f"Comparison files:downloaded file from FCnF({new}) and " f"uploaded one")
+
+with Box(fruits):
+    print("checking fruits")
+    print("cleaning fruits")
+
+from pathlib import Path
+from urllib.parse import urlparse, unquote
+
+url = "http://photographs.500px.com/kyle/09-09-2013%20-%2015-47-571378756077.jpg"
+
+url_parsed = unquote(urlparse(url).path)
+print(Path(url_parsed).name)
+
+print()
+
+data = {1: "a", 2: "b"}
+data2 = (1, 2, 3)
+print(dict.fromkeys(data2))
+
+
+def gener():
+    print("Start generator")
+    msg = yield "Some msg in generator"
+    print("After yield")
+    print(msg)
+    return "Returning value"
+
+gen = gener()
+ms = next(gen)
+print(ms)
+try:
+    gen.send("Cool send")
+except BaseException as exc:
+    print(exc)
+
+
+class X:
+
+    def __new__(cls, *args, count =1, **kwargs):
+        print("new, ", cls)
+        if count > 1:
+            return [super(X, cls).__new__(cls) for _ in range(count)]
+        return super().__new__(cls)
+
+    def __init__(self):
+        print("init")
+
+
+a = X(count=2)
+print(a)
