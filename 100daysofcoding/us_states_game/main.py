@@ -25,9 +25,7 @@ def show_missing_states():
 
 def check_attempt(user_guess: str):
     if user_guess in data.state.to_list():
-        turtle.goto(
-            int(data[data.state == user_guess].x), int(data[data.state == user_guess].y)
-        )
+        turtle.goto(int(data[data.state == user_guess].x), int(data[data.state == user_guess].y))
         turtle.write(user_guess)
         guessed_states.append(user_guess)
 
@@ -39,9 +37,7 @@ def remember_all_states():
 
 
 for _ in range(1, 51):
-    attempt = screen.textinput(
-        title=f"{len(guessed_states)}/50 States Correct", prompt="Enter a state: "
-    ).title()
+    attempt = screen.textinput(title=f"{len(guessed_states)}/50 States Correct", prompt="Enter a state: ").title()
     if attempt == "Exit":
         show_missing_states()
         break

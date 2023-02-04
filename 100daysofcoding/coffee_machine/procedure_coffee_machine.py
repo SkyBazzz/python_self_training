@@ -77,9 +77,7 @@ def make_coffee(drink_name, order_ingredients):
 
 
 while is_on:
-    choice = input(
-        f"What would you like to order {[ingredient for ingredient in MENU]}?"
-    )
+    choice = input(f"What would you like to order {[ingredient for ingredient in MENU]}?")
     if choice == "off":
         is_on = False
     elif choice == "report":

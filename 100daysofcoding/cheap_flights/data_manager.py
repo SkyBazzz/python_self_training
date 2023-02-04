@@ -7,9 +7,7 @@ import requests
 class DataManager:
     # This class is responsible for talking to the Google Sheet.
     def __init__(self):
-        self._base_url = (
-            "https://api.sheety.co/8e0786d81f21cf9fc793c51f1eead161/flightDeals/prices"
-        )
+        self._base_url = "https://api.sheety.co/8e0786d81f21cf9fc793c51f1eead161/flightDeals/prices"
         self._header = {"Authorization": f"Bearer {os.environ.get('SHEETY_TOKEN')}"}
         self.flight_data = FlightData()
 
@@ -27,7 +25,5 @@ class DataManager:
             self.update_sheet_info(row["id"], params)
 
     def update_sheet_info(self, index_id, params):
-        resp = requests.put(
-            url=f"{self._base_url}/{index_id}", headers=self._header, json=params
-        )
+        resp = requests.put(url=f"{self._base_url}/{index_id}", headers=self._header, json=params)
         pprint(resp.json(), width=120)

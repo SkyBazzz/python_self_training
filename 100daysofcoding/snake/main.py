@@ -33,12 +33,7 @@ while game_is_on:
         snake.extend()
         score_board.increase_score()
 
-    if (
-        snake.head.xcor() > 280
-        or snake.head.xcor() < -280
-        or snake.head.ycor() > 280
-        or snake.head.ycor() < -280
-    ):
+    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
         score_board.reset()
         snake.reset()
 

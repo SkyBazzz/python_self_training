@@ -42,10 +42,7 @@ class TicTacToe:
     def sets_state(self):
         self.checks_is_player_winner("X")
         self.checks_is_player_winner("O")
-        if (
-            self.players["X"][0] == self.players["O"][0]
-            or abs(self.players["X"][1] - self.players["O"][1]) > 1
-        ):
+        if self.players["X"][0] == self.players["O"][0] or abs(self.players["X"][1] - self.players["O"][1]) > 1:
             self.state = "Impossible"
         elif self.players["X"][0]:
             self.state = "X wins"

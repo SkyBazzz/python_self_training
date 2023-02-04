@@ -11,9 +11,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 exercise_endpoint = "https://trackapi.nutritionix.com/v2/natural/exercise"
-shitty_add = (
-    "https://api.sheety.co/8e0786d81f21cf9fc793c51f1eead161/workoutTracking/workouts"
-)
+shitty_add = "https://api.sheety.co/8e0786d81f21cf9fc793c51f1eead161/workoutTracking/workouts"
 
 headers = {
     "x-app-id": os.environ["APP_ID"],

@@ -106,9 +106,7 @@ _TEMPERATURE = _descriptor.Descriptor(
     serialized_end=141,
 )
 
-_TEMPERATURE.fields_by_name[
-    "time"
-].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_TEMPERATURE.fields_by_name["time"].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 DESCRIPTOR.message_types_by_name["Temperature"] = _TEMPERATURE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
