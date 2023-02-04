@@ -26,8 +26,7 @@ The coffee machine has:
 def buy():
     while True:
         coffee_type = input(
-            "What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu: "
-            "\n> "
+            "What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu: " "\n> "
         )
         global WATER_COUNT, MILK_COUNT, COFFEE_BEANS_COUNT, CUPS, MONEY
         if coffee_type == "1":
@@ -111,13 +110,9 @@ def fill():
     WATER_COUNT += add_water
     add_milk = int(input("Write how many ml of milk do you want to add: \n> "))
     MILK_COUNT += add_milk
-    add_coffee_beans = int(
-        input("Write how many grams of coffee beans do you want to add: \n> ")
-    )
+    add_coffee_beans = int(input("Write how many grams of coffee beans do you want to add: \n> "))
     COFFEE_BEANS_COUNT += add_coffee_beans
-    add_cups = int(
-        input("Write how many disposable cups of coffee do you want to add: \n> ")
-    )
+    add_cups = int(input("Write how many disposable cups of coffee do you want to add: \n> "))
     CUPS += add_cups
 
 

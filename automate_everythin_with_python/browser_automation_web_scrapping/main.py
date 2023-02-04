@@ -23,9 +23,7 @@ def get_driver(url: str = "https://automated.pythonanywhere.com/") -> WebDriver:
     options.add_argument("no-sandbox")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_argument("disable-blink-features=AutomationControlled")
-    chrome_driver = webdriver.Chrome(
-        service=Service(ChromeDriverManager().install()), options=options
-    )
+    chrome_driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     chrome_driver.get(url)
 
     return chrome_driver
@@ -66,9 +64,7 @@ def main():
     web_site = "https://zse.hr/en/indeks-366/365?isin=HRZB00ICBEX6"
     web_dr = get_driver(web_site)
     time.sleep(2)
-    element = web_dr.find_element(
-        by="xpath", value="//span[@class = 'stock-trend trend-grow']"
-    )
+    element = web_dr.find_element(by="xpath", value="//span[@class = 'stock-trend trend-grow']")
     text = str(sep_text(element.text))
 
     if float(text) > -0.10:

@@ -19,9 +19,7 @@ def helper_function(event_obj, timeout, i):
     if flag:
         print("Event was set to true() earlier, moving ahead with the thread")
     else:
-        print(
-            "Time out occured, event internal flag still false. Executing thread without waiting for event"
-        )
+        print("Time out occured, event internal flag still false. Executing thread without waiting for event")
         print("Value to be printed=", i)
 
 
@@ -180,6 +178,7 @@ def gener():
     print(msg)
     return "Returning value"
 
+
 gen = gener()
 ms = next(gen)
 print(ms)
@@ -190,8 +189,7 @@ except BaseException as exc:
 
 
 class X:
-
-    def __new__(cls, *args, count =1, **kwargs):
+    def __new__(cls, *args, count=1, **kwargs):
         print("new, ", cls)
         if count > 1:
             return [super(X, cls).__new__(cls) for _ in range(count)]

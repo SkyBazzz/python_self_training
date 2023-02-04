@@ -4,9 +4,7 @@ import argparse
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--type", type=str, required=False, choices=["annuity", "diff"], help=""
-    )
+    parser.add_argument("--type", type=str, required=False, choices=["annuity", "diff"], help="")
     parser.add_argument("--payment", type=int, required=False, help="")
     parser.add_argument("--principal", type=int, required=False, help="")
     parser.add_argument("--periods", type=int, required=False, help="")

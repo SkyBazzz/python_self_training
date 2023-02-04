@@ -15,9 +15,7 @@ def letters_count():
 
     print(f"Word Python (ignore case) was presented {accuracy} time(s).")
     most_freq_letter = max(dictionary.keys(), key=lambda x: dictionary.get(x))
-    print(
-        f"Most frequently used letter is {most_freq_letter} - {dictionary[most_freq_letter]} time(s)."
-    )
+    print(f"Most frequently used letter is {most_freq_letter} - {dictionary[most_freq_letter]} time(s).")
     print(sorted(dictionary.items(), key=lambda x: x[1], reverse=True))
 
 

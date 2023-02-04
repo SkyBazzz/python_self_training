@@ -93,11 +93,7 @@ def romanToInt(s: str) -> int:
     flag = False
     for index, roman_numeral in enumerate(s):
         if index != len(s) - 1:
-            if (
-                roman_numeral in six_subsractions
-                and not flag
-                and s[index + 1] in six_subsractions[s[index]]
-            ):
+            if roman_numeral in six_subsractions and not flag and s[index + 1] in six_subsractions[s[index]]:
                 converted_s.append(roman_numeral + s[index + 1])
                 flag = True
             elif not flag:
@@ -114,9 +110,7 @@ def romanToInt(s: str) -> int:
         else:
             for minus in six_subsractions:
                 if i[0] == minus:
-                    roman_integer += (
-                        roman_numeral_to_integer[i[1]] - roman_numeral_to_integer[i[0]]
-                    )
+                    roman_integer += roman_numeral_to_integer[i[1]] - roman_numeral_to_integer[i[0]]
                     break
     return roman_integer
 

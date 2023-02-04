@@ -15,9 +15,7 @@ def ls_lh(path):
     for file in listdir:
         domain, name = file_owner(file)
         stat = os.stat(file)
-        table.add_row(
-            [oct(stat.st_mode), stat.st_size, f"{domain}/{name}", stat.st_gid, file]
-        )
+        table.add_row([oct(stat.st_mode), stat.st_size, f"{domain}/{name}", stat.st_gid, file])
     table.align["Size"] = "r"
     print(table.get_string(title="File Info", sortby="Size", reversesort=True))
 

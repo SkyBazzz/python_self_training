@@ -37,11 +37,14 @@ def send_email(email_client, rec_email, content, subject="This is a subject"):
 
 
 def generate_content(name, filename, amount):
-    return [f"""
+    return [
+        f"""
     Here is a content of email
     Hi {name}! You need to pay for the service {amount}$
     Have a good day
-    """, filename, ]
+    """,
+        filename,
+    ]
 
 
 rows = pandas.read_csv("contacts.csv")
