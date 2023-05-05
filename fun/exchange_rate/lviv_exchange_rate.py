@@ -1,29 +1,45 @@
+from datetime import datetime
+
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
+
+PATH_TO_RATES = "/Users/obalkash/PycharmProjects/python_self_training/fun/exchange_rate/lviv_exchange_rate.txt"
 
 
 def get_rates(city="lvov", currency="usd", rate_date=datetime.now()):
-    today = rate_date.date()
-    response = requests.get(f"https://minfin.com.ua/ua/currency/{city}/{currency}/{today}/")
-    text = response.text
-    soup = BeautifulSoup(text, "html.parser")
-    table = soup.find_all("td")
-    banks_low_rate = table[1].find("span").get_text()[:7].replace("\n", "0").replace("-", "0")
-    banks_high_rate = table[2].find("span").get_text()[:7].replace("\n", "0").replace("-", "0")
-    market_low_rate = table[5].find("span").get_text()[:7].replace("\n", "0").replace("-", "0")
-    market_high_rate = table[6].find("span").get_text()[:7].replace("\n", "0").replace("-", "0")
-    pretty_today = rate_date.strftime("%Y-%m-%d: %a %H:%m:%S")
-    with open(
-        "/Users/obalkash/PycharmProjects/python_self_training/fun/exchange_rate/lviv_exchange_rate.txt", mode="a"
-    ) as rates:
-        information = f"{pretty_today}: Banks: {banks_low_rate}--{banks_high_rate}; Market {market_low_rate}--{market_high_rate}\n"
-        rates.write(information)
+    text = collecting_web_data(city, currency, rate_date)
+    banks_low, banks_high, market_low, market_high = extracting_rates(text)
+    save_rates(rate_date, (banks_high, banks_low, market_high, market_low))
 
     return {
-        "banks": (banks_low_rate, banks_high_rate),
-        "market": (market_low_rate, market_high_rate),
+        "banks": (banks_low, banks_high),
+        "market": (market_low, market_high),
     }
+
+
+def collecting_web_data(city, currency, rate_date):
+    today = rate_date.date()
+    response = requests.get(f"https://minfin.com.ua/ua/currency/{city}/{currency}/{today}/", timeout=5)
+    return response.text
+
+
+def extracting_rates(text):
+    soup = BeautifulSoup(text, "html.parser")
+    table = soup.find_all("td")
+    banks_low = table[1].get_text()[:7].replace("\n", "0").replace("-", "0").replace(".", "0")
+    banks_high = table[2].get_text()[:7].replace("\n", "0").replace("-", "0").replace(".", "0")
+    market_low = table[5].get_text()[:7].replace("\n", "0").replace("-", "0").replace(".", "0")
+    market_high = table[6].get_text()[:7].replace("\n", "0").replace("-", "0").replace(".", "0")
+    return banks_low, banks_high, market_low, market_high
+
+
+def save_rates(rate_date, bank_rates):
+    pretty_date = rate_date.strftime("%Y-%m-%d: %a %H:%M:%S")
+    with open(PATH_TO_RATES, mode="a", encoding="utf-8") as rates:
+        information = (
+            f"{pretty_date}: Banks: {bank_rates[0]}--{bank_rates[1]}; Market {bank_rates[2]}--{bank_rates[3]}\n"
+        )
+        rates.write(information)
 
 
 print(get_rates())
