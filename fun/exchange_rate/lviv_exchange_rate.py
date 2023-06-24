@@ -9,7 +9,7 @@ PATH_TO_RATES = "/Users/obalkash/PycharmProjects/python_self_training/fun/exchan
 def get_rates(city="lvov", currency="usd", rate_date=datetime.now()):
     text = collecting_web_data(city, currency, rate_date)
     banks_low, banks_high, market_low, market_high = extracting_rates(text)
-    save_rates(rate_date, (banks_high, banks_low, market_high, market_low))
+    save_rates(rate_date, (banks_low, banks_high, market_low, market_high))
 
     return {
         "banks": (banks_low, banks_high),
