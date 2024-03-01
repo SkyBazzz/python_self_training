@@ -21,3 +21,8 @@ opencv-python==4.8.0.76
 nltk==3.8.1
 moviepy==1.0.3
 scikit-learn==1.3.1
+wikipedia==1.4.0
+SpeechRecognition==3.10.0
+# for pandas to work with xlsx
+openpyxl==3.1.2
+python-on-whales==0.69.0
