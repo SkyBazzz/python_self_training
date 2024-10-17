@@ -11,8 +11,8 @@ output_dir = Path("output")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 
-def read_image_in_gray():
-    return cv2.imread(str(jpeg_path), 0)
+def read_image_in_gray(photo_path):
+    return cv2.imread(str(photo_path), 0)
 
 
 def calculate_size(cv_image, percentage):
@@ -44,7 +44,7 @@ def find_faces(proc_image, cascade: cv2.CascadeClassifier):
 
 
 for jpeg_path in input_dir.rglob("*.jpeg"):
-    image = read_image_in_gray()
+    image = read_image_in_gray(jpeg_path)
     cv2.imwrite(f"{output_dir}/gray-{jpeg_path.name}", image)
     resized_image = resize(image, PERCENTAGE)
     cv2.imwrite(f"{output_dir}/resized-{jpeg_path.name}", resized_image)

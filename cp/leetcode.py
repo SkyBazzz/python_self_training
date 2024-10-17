@@ -1,10 +1,8 @@
 import math
 from typing import List
-import re
-import integer as integer
 
 
-def twoSum(nums: List[int], target: int) -> List[int]:
+def two_sum(nums: List[int], target: int) -> List[int]:
     """
     Two sum
 
@@ -13,70 +11,63 @@ def twoSum(nums: List[int], target: int) -> List[int]:
     :return: indices of the two numbers such that they add up to target
     """
 
-    for i in range(len(nums)):
-        for j in range(i + 1, len(nums)):
-            if nums[i] + nums[j] == target:
-                return [i, j]
+    for integer in nums:
+        for another_integer in range(integer + 1, len(nums)):
+            if nums[integer] + nums[another_integer] == target:
+                return [integer, another_integer]
+    return []
 
 
-def reverse(x: int) -> int:
+def reverse(value_x: int) -> int:
     """
     Reverse Integer
 
-    :param x: 32-bit integer
+    :param value_x: 32-bit integer
     :return: x's digits reversed. If reversing x causes the value to go outside
     the signed 32-bit integer range [-231, 231 - 1], then return 0.
     """
 
     max_value = math.pow(2, 31) - 1
     min_value = math.pow(-2, 31)
-    if min_value >= x or x >= max_value:
+    if min_value >= value_x or value_x >= max_value:
         return 0
+    string_x = str(value_x)
+    if value_x >= 0:
+        rev_str = string_x[::-1]
     else:
-        string_x = str(x)
-        if x >= 0:
-            rev_str = string_x[::-1]
-        else:
-            str_abs = string_x[1:]
-            rev_str_abs = str_abs[::-1]
-            rev_str = "-" + rev_str_abs
-        rev_int = int(rev_str)
-        if min_value >= rev_int or rev_int >= max_value:
-            return 0
-        else:
-            return rev_int
+        str_abs = string_x[1:]
+        rev_str_abs = str_abs[::-1]
+        rev_str = f"-{rev_str_abs}"
+    rev_int = int(rev_str)
+    return 0 if min_value >= rev_int or rev_int >= max_value else rev_int
 
 
-def reverse2(x: int) -> int:
+def reverse2(value_x: int) -> int:
     max_value = math.pow(2, 31) - 1
     min_value = math.pow(-2, 31)
 
-    n = (int(str(x)[::-1])) if x >= 0 else -(int(str(x * -1)[::-1]))
-    return n if min_value <= n <= max_value else 0
+    number = (int(str(value_x)[::-1])) if value_x >= 0 else -(int(str(value_x * -1)[::-1]))
+    return number if min_value <= number <= max_value else 0
 
 
-def isPalindrome(x: int) -> bool:
+def is_palindrome(value_x: int) -> bool:
     """
     Palindrome Number
 
-    :param x: given an integer value
+    :param value_x: given an integer value
     :return: is palindrome
     """
-    if x < 0:
+    if value_x < 0:
         return False
-    else:
-        str_x = str(x)
-        for i in range(math.floor(len(str_x) / 2)):
-            if str_x[i] != str_x[-i - 1]:
-                return False
-        return True
+    str_x = str(value_x)
+    return all(str_x[integer] == str_x[-integer - 1] for integer in range(math.floor(len(str_x) / 2)))
 
 
-def romanToInt(s: str) -> int:
+def roman_to_int(value_s: str) -> int:
     """
     Roman to Integer
 
-    :param s: input Roman numeral
+    :param value_s: input Roman numeral
     :return: converted to an integer
     """
     roman_numeral_to_integer = {
@@ -89,12 +80,16 @@ def romanToInt(s: str) -> int:
         "M": 1000,
     }
     six_subsractions = {"I": ["V", "X"], "X": ["L", "C"], "C": ["D", "M"]}
-    converted_s = list()
+    converted_s = []
     flag = False
-    for index, roman_numeral in enumerate(s):
-        if index != len(s) - 1:
-            if roman_numeral in six_subsractions and not flag and s[index + 1] in six_subsractions[s[index]]:
-                converted_s.append(roman_numeral + s[index + 1])
+    for index, roman_numeral in enumerate(value_s):
+        if index != len(value_s) - 1:
+            if (
+                roman_numeral in six_subsractions
+                and not flag
+                and value_s[index + 1] in six_subsractions[value_s[index]]
+            ):
+                converted_s.append(roman_numeral + value_s[index + 1])
                 flag = True
             elif not flag:
                 converted_s.append(roman_numeral)
@@ -104,31 +99,31 @@ def romanToInt(s: str) -> int:
             converted_s.append(roman_numeral)
 
     roman_integer = 0
-    for i in converted_s:
-        if len(i) == 1:
-            roman_integer += roman_numeral_to_integer[i]
+    for integer in converted_s:
+        if len(integer) == 1:
+            roman_integer += roman_numeral_to_integer[integer]
         else:
             for minus in six_subsractions:
-                if i[0] == minus:
-                    roman_integer += roman_numeral_to_integer[i[1]] - roman_numeral_to_integer[i[0]]
+                if integer[0] == minus:
+                    roman_integer += roman_numeral_to_integer[integer[1]] - roman_numeral_to_integer[integer[0]]
                     break
     return roman_integer
 
 
-def romanToInt1(s: str) -> int:
-    rd = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+def roman_to_int1(value_s: str) -> int:
+    roman_numbers = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
 
-    n = len(s)
-    num = rd[s[n - 1]]
-    for i in range(n - 2, -1, -1):
-        if rd[s[i]] >= rd[s[i + 1]]:
-            num += rd[s[i]]
+    length = len(value_s)
+    num = roman_numbers[value_s[length - 1]]
+    for integer in range(length - 2, -1, -1):
+        if roman_numbers[value_s[integer]] >= roman_numbers[value_s[integer + 1]]:
+            num += roman_numbers[value_s[integer]]
         else:
-            num -= rd[s[i]]
+            num -= roman_numbers[value_s[integer]]
     return num
 
 
-def longestCommonPrefix(strs: List[str]) -> str:
+def longest_common_prefix(strs: List[str]) -> str:
     """
     14. Longest Common Prefix
     :param strs: List of str
@@ -143,7 +138,7 @@ def longestCommonPrefix(strs: List[str]) -> str:
     return prefix
 
 
-print(longestCommonPrefix(["flower", "flow", "flight"]))
+print(longest_common_prefix(["flower", "flow", "flight"]))
 
 
 def maximum_wealth(accounts):
@@ -163,10 +158,7 @@ def running_sum(nums):
     :rtype: List[int]
     """
 
-    result = []
-    for i in range(len(nums)):
-        result.append(sum(nums[:i]) + nums[i])
-    return result
+    return [sum(nums[:integer]) + integer for integer in nums]
 
 
 print(running_sum([1, 2, 3, 4, 5]))
