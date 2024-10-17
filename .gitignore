@@ -150,3 +150,12 @@ cython_debug/
 [Ss]cripts
 pyvenv.cfg
 pip-selfcheck.json
+
+
+# input and outup files
+*input/
+*output/
+*.csv
+*.json
+*.jpg
+*.txt

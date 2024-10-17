@@ -26,3 +26,11 @@ SpeechRecognition==3.10.0
 # for pandas to work with xlsx
 openpyxl==3.1.2
 python-on-whales==0.69.0
+
+Pillow~=9.2.0
+cryptography~=36.0.1
+PyYAML~=5.4.1
+httpx~=0.22.0
+Scrapy~=2.11.0
+itemadapter~=0.8.0
+numpy~=1.22.2
